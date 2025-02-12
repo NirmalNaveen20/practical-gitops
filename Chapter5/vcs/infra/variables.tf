@@ -7,6 +7,7 @@ variable "environment" {
 variable "region" {
   description = "The region where we wish to deploy to"
   type        = string
+  default     = "us-east2"
 }
 
 variable "ssh_key_name" {
