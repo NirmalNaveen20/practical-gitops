@@ -1,8 +1,6 @@
 # Apress Source Code
 
-This repository accompanies [*Practical GitOps: Infrastructure Management using Terraform, AWS and Github Actions*](https://link.springer.com/book/10.1007/978-1-4842-8673-9) by Rohit Salecha (Apress, 2022).
-
-More detailed description of the book alongwith the full ToC can be found here
+This repository accompanies [*Practical GitOps: Infrastructure Management using Terraform, AWS and Github Actions*]
 
 [comment]: #cover
 ![Cover image](9781484286722.JPG)
