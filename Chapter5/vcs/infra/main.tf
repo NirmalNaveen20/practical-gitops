@@ -79,20 +79,20 @@ resource "aws_instance" "apache2_server" {
 }
 
 # Uncomment for Section 5.3.4 - Trigger the VCS
-// resource "aws_instance" "apache2_server_1" {
-//   ami           = data.aws_ami.ubuntu.id
-//   instance_type = var.instance_type
-//   vpc_security_group_ids = [module.http_sg_ingress.sg_id,
-//     module.generic_sg_egress.sg_id,
-//   module.ssh_sg_ingress.sg_id]
-//   key_name  = var.ssh_key_name
-//   user_data = file("./scripts/user_data.sh")
-//   tags = {
-//     env  = var.environment
-//     Name = "ec2-${local.name-suffix}"
-//   }
+resource "aws_instance" "apache2_server_1" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  vpc_security_group_ids = [module.http_sg_ingress.sg_id,
+    module.generic_sg_egress.sg_id,
+  module.ssh_sg_ingress.sg_id]
+  key_name  = var.ssh_key_name
+  user_data = file("./scripts/user_data.sh")
+  tags = {
+    env  = var.environment
+    Name = "ec2-${local.name-suffix}"
+  }
 
-//   depends_on = [
-//     module.generic_sg_egress
-//   ]
-// }
+  depends_on = [
+    module.generic_sg_egress
+  ]
+}
