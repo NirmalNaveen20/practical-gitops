@@ -4,6 +4,6 @@ output "ip_address" {
 }
 
 # Uncomment for Section 5.3.4 - Trigger the VCS
-// output "ip_address_1" {
-//   value = aws_instance.apache2_server_1.public_ip
-// }
+output "ip_address_1" {
+  value = aws_instance.apache2_server_1.public_ip
+}
