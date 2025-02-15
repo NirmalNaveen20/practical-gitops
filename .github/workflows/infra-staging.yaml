@@ -1,4 +1,4 @@
-# Infra staging plan
+# Infra staging plan workflow
 name: practicalgitops.staging.infra
 
 on:
