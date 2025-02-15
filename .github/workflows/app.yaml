@@ -11,7 +11,8 @@ on:
     paths:
       - "Chapter7/app/**"
       - "!**/README.md"
-
+  workflow_dispatch:  # Allows manual triggering
+  
 # Job declaration starts.
 jobs:
   docker:

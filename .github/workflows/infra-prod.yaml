@@ -3,13 +3,13 @@ name: practicalgitops.prod.infra
 on:
   push:
     branches:
-        - main
+      - main
     paths:
       - "infra/**"
       - "!**/README.md"
   pull_request:
     branches:
-        - main
+      - main
     paths:
       - "infra/**"
       - "!**/README.md"
@@ -38,7 +38,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init -backend-config=prod.hcl
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
