@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - "infra/**"
+      - "/Chapter5/gha/infra/**"
       - "!**/README.md"
 
 jobs:
