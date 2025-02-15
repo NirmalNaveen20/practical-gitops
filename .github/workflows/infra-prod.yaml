@@ -13,7 +13,8 @@ on:
     paths:
       - "Chapter6/infra/**"
       - "!**/README.md"
-
+  workflow_dispatch:
+  
 jobs:
   terraform:
     name: "Terraform"
