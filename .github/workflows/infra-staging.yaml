@@ -5,15 +5,15 @@ on:
     branches:
         - staging
     paths:
-      - "infra/**"
+      - "Chapter6/infra/**"
       - "!**/README.md"
   pull_request:
     branches:
         - staging
     paths:
-      - "infra/**"
+      - "Chapter6/infra/**"
       - "!**/README.md" 
-
+  workflow_dispatch:
 jobs:
   terraform:
     name: "Terraform"

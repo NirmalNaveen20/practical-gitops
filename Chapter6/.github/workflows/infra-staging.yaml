@@ -1,4 +1,3 @@
-# Infra staging plan workflow
 name: practical-gitops.staging.infra
 
 on:
@@ -6,13 +5,13 @@ on:
     branches:
         - staging
     paths:
-      - "/Chapter6/infra/**"
+      - "Chapter6/infra/**"
       - "!**/README.md"
   pull_request:
     branches:
         - staging
     paths:
-      - "/Chapter6/infra/**"
+      - "Chapter6/infra/**"
       - "!**/README.md" 
 
 jobs:

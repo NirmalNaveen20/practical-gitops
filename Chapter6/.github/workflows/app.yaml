@@ -2,7 +2,7 @@
 name: practicalgitops.app
 env:
   DOCKERHUB_TAG: "${{ secrets.DOCKERHUB_USERNAME }}/practicalgitops"
-  DOCKERFILE_PATH: app
+  DOCKERFILE_PATH: /Chapter6/app
 
 on:
   push:
@@ -11,6 +11,7 @@ on:
     paths:
       - "/Chapter6/app/**"
       - "!**/README.md"
+  workflow_dispatch:
 
 # Job declaration starts.
 jobs:
