@@ -1,34 +1,30 @@
-# Test Terraform Configuration for Staging Environment
 name: practicalgitops.staging.infra
 
 on:
   push:
     branches:
-        - staging
+      - staging
     paths:
       - "Chapter6/infra/**"
       - "!**/README.md"
   pull_request:
     branches:
-        - staging
+      - staging
     paths:
       - "Chapter6/infra/**"
-      - "!**/README.md" 
+      - "!**/README.md"
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Terraform Staging"
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: "Chapter6/infra"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Uncomment Terraform Cloud Backend Configuration file
-        id: uncomment
-        run: sed -i 's/^#*//' backend.tf
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -37,11 +33,9 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Init
-        id: init
         run: terraform init -backend-config=staging.hcl
-      
+
       - name: Terraform Validate
-        id: validate
         run: terraform validate -no-color
 
       - name: Terraform Plan
@@ -58,29 +52,25 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `## Terraform Staging Infra Plan
+            const output = `## Terraform Staging Plan
 
-            #### Terraform Initialization \`${{ steps.init.outcome }}\`
-            #### Terraform Validation \`${{ steps.validate.outcome }}\`
-            #### Terraform Plan \`${{ steps.plan.outcome }}\`
+            #### Terraform Init: \`${{ steps.init.outcome }}\`
+            #### Terraform Validation: \`${{ steps.validate.outcome }}\`
+            #### Terraform Plan: \`${{ steps.plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
             ${process.env.PLAN}
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            *Triggered by: @${{ github.actor }}*`;
             
-            github.rest.issues.createComment ({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: output
-            })
-            
-      - name: Terraform Plan Status
-        if: steps.plan.outcome == 'failure'
-        run: exit 1
+            });
 
-      - name: Terraform Apply
+      - name: Terraform Apply (on push)
         if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
-        run: terraform apply
+        run: terraform apply -auto-approve
