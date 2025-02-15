@@ -1,3 +1,3 @@
-workspaces { name = "gitops-chapter6" }
+workspaces { name = "dev" }
 hostname     = "app.terraform.io"
 organization = "practical-gitops"
