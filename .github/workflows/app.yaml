@@ -11,7 +11,6 @@ on:
     paths:
       - "Chapter6/app/**"
       - "!**/README.md"
-  workflow_dispatch:
   
 # Job declaration starts.
 jobs:
