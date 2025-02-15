@@ -1,3 +1,4 @@
+# Test Terraform Configuration for Staging Environment
 name: practicalgitops.staging.infra
 
 on:
