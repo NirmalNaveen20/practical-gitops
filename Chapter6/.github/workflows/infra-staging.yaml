@@ -1,5 +1,5 @@
-# Infra staging plan
-name: practicalgitops.staging.infra
+# Infra staging plan workflow
+name: practical-gitops.staging.infra
 
 on:
   push:
