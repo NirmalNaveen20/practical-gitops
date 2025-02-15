@@ -1,3 +1,4 @@
+# Infra staging plan
 name: practicalgitops.staging.infra
 
 on:
