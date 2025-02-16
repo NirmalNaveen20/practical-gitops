@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "infra"
+        working-directory: "Chapter6/infra"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
