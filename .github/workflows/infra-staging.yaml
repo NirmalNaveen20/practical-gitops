@@ -1,5 +1,4 @@
-# Test Terraform Configuration for Staging Environment
-name: practicalgitops.staging.infra
+name: practical-gitops.staging.infra
 
 on:
   push:
@@ -14,15 +13,14 @@ on:
     paths:
       - "Chapter6/infra/**"
       - "!**/README.md" 
-  workflow_dispatch:
-          
+
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "Chapter6/infra"
+        working-directory: "infra"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -70,14 +68,14 @@ jobs:
             </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-            
+
             github.rest.issues.createComment ({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: output
             })
-            
+
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1

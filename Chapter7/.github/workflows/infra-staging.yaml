@@ -1,26 +1,27 @@
-name: practicalgitops.prod.infra
+# Test Terraform Configuration for Staging Environment
+name: practicalgitops.staging.infra
 
 on:
   push:
     branches:
-        - main
+        - staging
     paths:
-      - "/Chapter6/infra/**"
+      - "infra/**"
       - "!**/README.md"
   pull_request:
     branches:
-        - main
+        - staging
     paths:
-      - "/Chapter6/infra/**"
-      - "!**/README.md"
-      
+      - "infra/**"
+      - "!**/README.md" 
+          
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: "infra"
+        working-directory: "Chapter6/infra"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,7 +38,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -backend-config=prod.hcl
+        run: terraform init -backend-config=staging.hcl
       
       - name: Terraform Validate
         id: validate
@@ -57,7 +58,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `## Terraform Prod Infra Plan
+            const output = `## Terraform Staging Infra Plan
 
             #### Terraform Initialization \`${{ steps.init.outcome }}\`
             #### Terraform Validation \`${{ steps.validate.outcome }}\`
@@ -75,11 +76,11 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
-
+            
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
         run: terraform apply

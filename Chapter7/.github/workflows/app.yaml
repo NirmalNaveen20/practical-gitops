@@ -2,17 +2,16 @@
 name: practicalgitops.app
 env:
   DOCKERHUB_TAG: "${{ secrets.DOCKERHUB_USERNAME }}/practicalgitops"
-  DOCKERFILE_PATH: /Chapter6/app
+  DOCKERFILE_PATH: app
 
 on:
   push:
     branches:
       - main
     paths:
-      - "/Chapter6/app/**"
+      - "app/**"
       - "!**/README.md"
-  workflow_dispatch:
-
+  
 # Job declaration starts.
 jobs:
   docker:
@@ -40,4 +39,3 @@ jobs:
           context: "${{ env.DOCKERFILE_PATH }}"
           push: true
           tags: "${{ env.DOCKERHUB_TAG }}:latest"
-  

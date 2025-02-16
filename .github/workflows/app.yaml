@@ -11,7 +11,7 @@ on:
     paths:
       - "Chapter6/app/**"
       - "!**/README.md"
-  
+
 # Job declaration starts.
 jobs:
   docker:
@@ -39,3 +39,4 @@ jobs:
           context: "${{ env.DOCKERFILE_PATH }}"
           push: true
           tags: "${{ env.DOCKERHUB_TAG }}:latest"
+  
